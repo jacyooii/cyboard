@@ -28,14 +28,14 @@
 
         Numpad_Nav_Layer {
             bindings = <
-&rgb_ug RGB_TOG  &rgb_ug RGB_EFR  &rgb_ug RGB_EFF  &trans  &trans  &bl BL_TOG            &trans  &kp PRINTSCREEN  &kp SCROLLLOCK   &trans           &trans        &trans
-&rgb_ug RGB_HUD  &rgb_ug RGB_HUI  &trans           &trans  &trans  &bl BL_INC            &trans  &trans           &kp KP_DIVIDE    &kp KP_ASTERISK  &kp KP_MINUS  &trans
-&rgb_ug RGB_SAD  &rgb_ug RGB_SAI  &trans           &trans  &trans  &bl BL_DEC            &trans  &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp KP_PLUS   &trans
-&rgb_ug RGB_BRD  &rgb_ug RGB_BRI  &trans           &trans  &trans  &trans                &trans  &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp KP_PLUS   &trans
-&rgb_ug RGB_SPD  &rgb_ug RGB_SPI  &trans           &trans  &trans  &trans                &trans  &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp KP_ENTER  &trans
-&trans           &to 0            &trans           &trans  &trans                                &kp KP_NUMBER_0  &trans           &kp DOT          &kp KP_ENTER  &trans
-                                                           &trans  &trans      &trans    &trans  &trans           &trans
-                                                           &trans  &trans      &trans    &trans  &trans           &trans
+&rgb_ug RGB_TOG  &rgb_ug RGB_EFR  &rgb_ug RGB_EFF  &trans  &bt BT_CLR_ALL  &bl BL_TOG            &trans  &kp PRINTSCREEN  &kp SCROLLLOCK   &trans           &trans        &trans
+&rgb_ug RGB_HUD  &rgb_ug RGB_HUI  &trans           &trans  &trans          &bl BL_INC            &trans  &trans           &kp KP_DIVIDE    &kp KP_ASTERISK  &kp KP_MINUS  &trans
+&rgb_ug RGB_SAD  &rgb_ug RGB_SAI  &trans           &trans  &trans          &bl BL_DEC            &trans  &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp KP_PLUS   &trans
+&rgb_ug RGB_BRD  &rgb_ug RGB_BRI  &trans           &trans  &trans          &trans                &trans  &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp KP_PLUS   &trans
+&rgb_ug RGB_SPD  &rgb_ug RGB_SPI  &trans           &trans  &trans          &trans                &trans  &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp KP_ENTER  &trans
+&trans           &to 0            &trans           &trans  &trans                                        &kp KP_NUMBER_0  &trans           &kp DOT          &kp KP_ENTER  &trans
+                                                           &trans          &trans      &trans    &trans  &trans           &trans
+                                                           &trans          &trans      &trans    &trans  &trans           &trans
             >;
         };
 
@@ -83,19 +83,20 @@
 // right hand trackball configuration
 
 &trackball_peripheral_listener {
-    input-processors =
-       <&zip_xy_scaler 4 5>;
-//     activate layer 3 within 500ms of the trackball moving
-//     <&zip_temp_layer 3 500>;
+    input-processors = <&zip_xy_scaler 4 5>;
+
+    //     activate layer 3 within 500ms of the trackball moving
+    //     <&zip_temp_layer 3 500>;
 };
+
 //left hand trackball configuration
 
 &trackball_central_listener {
     input-processors =
-        // multiply sensitivity by 1, divide by 3 (make it slower for scrolling),,
+        // multiply sensitivity by 1, divide by 3 (make it slower for scrolling),,,
         <&zip_xy_scaler 1 16>,
-        // make this trackball output scrolling events by default instead of cursor movement,,
+        // make this trackball output scrolling events by default instead of cursor movement,,,
         <&zip_xy_to_scroll_mapper>,
-        // invert vertical scrolling so that the view moves in the same direction as the top of the trackball.,,
+        // invert vertical scrolling so that the view moves in the same direction as the top of the trackball.,,,
         <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>;
 };
